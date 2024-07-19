@@ -1,0 +1,34 @@
+{
+  "expo": {
+    "name": "SCREAM",
+    "slug": "SCREAM",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/sc.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/sc.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/sc.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/sc.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "scheme": [
+      "SCREAM"
+    ]
+  }
+}
