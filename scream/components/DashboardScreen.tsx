@@ -1,6 +1,5 @@
-// src/components/DashboardScreen.tsx
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, FlatList, ListRenderItem } from 'react-native';
+import { View,Text, StyleSheet, TouchableOpacity, FlatList, ListRenderItem, Image } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -11,14 +10,14 @@ type Film = {
   title: string;
   director: string;
   time: string;
+  imageUrl: string; 
 };
 
 const films: Film[] = [
-  { id: '1', title: 'Scream 1', director: 'Director: Wes Craven', time: 'Time: 	114 minutos' },
-  { id: '2', title: 'Scream 2', director: 'Director: Wes Craven', time: 'Time: 120 minutos' },
-  { id: '3', title: 'Scream 3', director: 'Director: Wes Craven', time: 'Time: 	117 minutos' },
-  { id: '4', title: 'Scream 4', director: 'Director: Wes Craven', time: 'Time; 	111 minutos' },
-  
+  { id: '1', title: 'Scream 1', director: 'Director: Wes Craven', time: 'Time: 114 minutos', imageUrl: 'https://i.pinimg.com/564x/a1/9d/89/a19d89222c5983e955d5f6d784f04e54.jpg' },
+  { id: '2', title: 'Scream 2', director: 'Director: Wes Craven', time: 'Time: 120 minutos', imageUrl: 'https://pbs.twimg.com/media/GFyEBFAXMAAUzt9?format=jpg&name=4096x4096' },
+  { id: '3', title: 'Scream 3', director: 'Director: Wes Craven', time: 'Time: 117 minutos', imageUrl: 'https://i.pinimg.com/564x/7a/fe/e9/7afee9296fc250b7adf0f4067b4ef196.jpg' },
+  { id: '4', title: 'Scream 4', director: 'Director: Wes Craven', time: 'Time: 111 minutos', imageUrl: 'https://www.movieposters.com/cdn/shop/products/scream4.mp_1aa1c346-cd17-49b0-ad05-1ab59abc2b0e_480x.progressive.jpg?v=1674054616' },
 ];
 
 type DashboardScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Dashboard'>;
@@ -29,7 +28,8 @@ const DashboardScreen: React.FC = () => {
   const renderItem: ListRenderItem<Film> = ({ item }) => (
     <TouchableOpacity onPress={() => navigation.navigate('Scenes')}>
       <View style={styles.card}>
-        <View>
+        <Image source={{ uri: item.imageUrl }} style={styles.cardImage} />
+        <View style={styles.cardContent}>
           <Text style={styles.cardTitle}>{item.title}</Text>
           <Text style={styles.cardSubtitle}>{item.director}</Text>
           <Text style={styles.cardSubtitle}>{item.time}</Text>
@@ -48,7 +48,7 @@ const DashboardScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>DASHBOARD</Text>
+      <Text style={styles.header}></Text>
       <Text style={styles.subHeader}>FILMS</Text>
       <FlatList
         data={films}
@@ -89,8 +89,16 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 15,
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  cardImage: {
+    width: 60,
+    height: 90,
+    borderRadius: 10,
+    marginRight: 15,
+  },
+  cardContent: {
+    flex: 1,
   },
   cardTitle: {
     fontSize: 18,
